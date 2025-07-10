@@ -1,0 +1,22 @@
+&spim20 {
+    status = "okay";
+    cs-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>; /* P2.10 */
+    pinctrl-0 = <&spim20_default>;
+    pinctrl-names = "default";
+};
+
+&pinctrl {
+    spim20_default: spim20_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 2, 6)>,   /* P2.06 */
+                    <NRF_PSEL(SPIM_MOSI, 2, 2)>;  /* P2.02 */
+        };
+    };
+};
+
+/ {
+    spi_cs: spi_cs {
+        compatible = "nordic,spi-gpio-cs";
+        gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;  /* P2.10 for CS */
+    };
+};
