@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  nrf-spi-dev:
+    image: cplacentile/vertex-nordic:latest  # Use existing image
+    container_name: nrf-spi-dev               # Different container name
+    volumes:
+      - ./:/workspace/nrf-spi-test           # Mount current dir to different path
+      - ncs-volume:/workspace/ncs            # Share the same NCS volume
+      - /dev/bus/usb:/dev/bus/usb
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    privileged: true
+    network_mode: host
+    environment:
+      - ZEPHYR_BASE=/workspace/ncs/zephyr
+      - NRF_BASE=/workspace/ncs/nrf
+    stdin_open: true
+    tty: true
+    working_dir: /workspace/nrf-spi-test     # Update working directory
+    command: /bin/bash
+volumes:
+  ncs-volume:
+    driver: local
