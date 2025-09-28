@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(west build:*)",
+      "Bash(sudo west flash:*)",
+      "Read(//dev/**)",
+      "Bash(timeout:*)",
+      "Bash(sudo timeout:*)",
+      "Bash(sudo stty:*)",
+      "Read(//workspace/ncs/zephyr/boards/arm/xiao_nrf54l15/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
