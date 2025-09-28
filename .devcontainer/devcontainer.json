@@ -3,20 +3,13 @@
   "dockerComposeFile": "../docker-compose.yml",
   "service": "nrf-spi-dev",
   "workspaceFolder": "/workspace/nrf-spi-test",
+  "remoteUser": "developer",  // Add this
   "customizations": {
     "vscode": {
-      "extensions": [
-        "nordic-semiconductor.nrf-connect",
-        "ms-vscode.cpptools",
-        "marus25.cortex-debug",
-        "ms-vscode.cmake-tools"
-      ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-        "cmake.configureOnOpen": false
+        "terminal.integrated.cwd": "/workspace/nrf-spi-test"
       }
     }
-  },
-  "postAttachCommand": "echo 'Connected to NRF development container'",
-  "remoteUser": "root"
+  }
 }

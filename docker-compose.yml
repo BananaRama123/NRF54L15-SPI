@@ -7,18 +7,17 @@ services:
       - ./:/workspace/nrf-spi-test
       - ncs-volume:/workspace/ncs
       - /dev:/dev
-      - /sys:/sys  # Add this for device detection
     devices:
-      - /dev/bus/usb:/dev/bus/usb  # Keep this for USB access
+      - /dev/bus/usb:/dev/bus/usb
     privileged: true
     network_mode: host
     environment:
       - ZEPHYR_BASE=/workspace/ncs/zephyr
       - NRF_BASE=/workspace/ncs/nrf
-      - UDEV=1  # Enable udev processing
     stdin_open: true
     tty: true
-    working_dir: /workspace/nrf-spi-test
+    working_dir: /workspace/nrf-spi-test    # Sets default directory
+    user: developer                          # Sets default user
     command: /bin/bash
 volumes:
   ncs-volume:
