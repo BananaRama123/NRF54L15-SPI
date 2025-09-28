@@ -1,22 +1,24 @@
 version: '3.8'
 services:
   nrf-spi-dev:
-    image: cplacentile/vertex-nordic:latest  # Use existing image
-    container_name: nrf-spi-dev               # Different container name
+    image: cplacentile/vertex-nordic:latest
+    container_name: nrf-spi-dev
     volumes:
-      - ./:/workspace/nrf-spi-test           # Mount current dir to different path
-      - ncs-volume:/workspace/ncs            # Share the same NCS volume
-      - /dev/bus/usb:/dev/bus/usb
+      - ./:/workspace/nrf-spi-test
+      - ncs-volume:/workspace/ncs
+      - /dev:/dev
+      - /sys:/sys  # Add this for device detection
     devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/bus/usb:/dev/bus/usb  # Keep this for USB access
     privileged: true
     network_mode: host
     environment:
       - ZEPHYR_BASE=/workspace/ncs/zephyr
       - NRF_BASE=/workspace/ncs/nrf
+      - UDEV=1  # Enable udev processing
     stdin_open: true
     tty: true
-    working_dir: /workspace/nrf-spi-test     # Update working directory
+    working_dir: /workspace/nrf-spi-test
     command: /bin/bash
 volumes:
   ncs-volume:
