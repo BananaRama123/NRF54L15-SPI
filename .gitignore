@@ -1,2 +1,3 @@
 build*/
 boards/xiao_nrf54l15.overlay 
+/boards
