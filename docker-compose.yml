@@ -16,9 +16,9 @@ services:
       - NRF_BASE=/workspace/ncs/nrf
     stdin_open: true
     tty: true
-    working_dir: /workspace/nrf-spi-test    # Sets default directory
-    user: developer                          # Sets default user
-    command: /bin/bash
+    working_dir: /workspace/nrf-spi-test
+    user: developer
+    command: /bin/bash -c "echo 'cd /workspace/nrf-spi-test' >> ~/.bashrc && /bin/bash"
 volumes:
   ncs-volume:
     driver: local
